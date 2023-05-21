@@ -31,7 +31,23 @@ class StudentRepositoryTest {
                 )
                 .build();
 
+        Student student2 = Student
+                .builder()
+                .firstName("Henrick")
+                .lastName("Rogers")
+                .emailId("henrickrogers@hotmail.com")
+                .guardian(
+                        Guardian
+                                .builder()
+                                .name("John")
+                                .email("john@gmail.com")
+                                .mobile("95877556621")
+                                .build()
+                )
+                .build();
+
         repository.save(student);
+        repository.save(student2);
     }
 
     @Test
@@ -56,8 +72,28 @@ class StudentRepositoryTest {
     }
 
     @Test
-    public void printStudentByEmail() {
+    public void printStudentFirstNameByEmail() {
         System.out.println(repository.getStudentFirstNameByEmailAddress("shourovcseruet@gmail.com"));
+    }
+
+    @Test
+    public void printStudentFirstNameByEmailNative() {
+        System.out.println(repository.getStudentFirstNameByEmailAddressNative("shourovcseruet@gmail.com"));
+    }
+
+    @Test
+    public void printStudentByEmailNamedParam() {
+        System.out.println(repository.getStudentByEmailNamedParam("shourovcseruet@gmail.com"));
+    }
+
+    @Test
+    public void printStudentByEmailNamedParamNative() {
+        System.out.println(repository.getStudentByEmailNamedParamNative("henrickrogers@hotmail.com"));
+    }
+
+    @Test
+    public void updateStudentByEmail() {
+        System.out.println(repository.updateStudentByEmail("Henry", "henrickrogers@hotmail.com"));
     }
 
 }
